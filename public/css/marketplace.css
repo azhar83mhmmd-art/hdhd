@@ -8,31 +8,51 @@
    ============================================================ */
 
 .hero {
-  padding: clamp(32px, 8vw, 56px) 0 clamp(40px, 9vw, 64px);
-  border-bottom: var(--border-w) solid var(--ink);
-  background:
-    radial-gradient(circle at 85% 20%, rgba(30, 28, 24, 0.06), transparent 55%),
-    var(--bg);
+  padding: clamp(32px, 8vw, 56px) 0 clamp(44px, 10vw, 72px);
+  border-bottom: none;
+  background: var(--gradient-hero);
+  position: relative;
   overflow: hidden;
+  border-radius: 0 0 32px 32px;
 }
+
+/* Dekorasi lingkaran transparan, subtle, tidak mengganggu teks */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+.hero::before { width: 420px; height: 420px; top: -220px; right: -120px; }
+.hero::after { width: 260px; height: 260px; bottom: -140px; right: 18%; background: rgba(6, 182, 212, 0.18); }
 
 .hero__grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 40px;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
-.hero__headline { margin-bottom: 14px; }
-.hero__sub { font-size: clamp(0.95rem, 2.4vw, 1.05rem); max-width: 46ch; margin-bottom: 28px; }
+.hero .eyebrow {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.hero__headline { margin-bottom: 14px; color: #fff; }
+.hero__sub { font-size: clamp(0.95rem, 2.4vw, 1.05rem); max-width: 46ch; margin-bottom: 28px; color: rgba(255, 255, 255, 0.85); }
 
 .hero__search {
   display: flex;
   gap: 0;
-  border: var(--border-w) solid var(--ink);
-  border-radius: 6px;
+  border: none;
+  border-radius: 16px;
   background: var(--card);
-  box-shadow: var(--shadow);
+  box-shadow: 0 20px 45px -12px rgba(9, 30, 66, 0.35);
   overflow: hidden;
   max-width: 100%;
 }
@@ -40,7 +60,7 @@
 .hero__search input {
   border: none;
   border-radius: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.95rem;
   flex: 1;
   min-width: 0;
@@ -51,7 +71,7 @@
 .hero__search button {
   border: none;
   border-radius: 0;
-  border-left: var(--border-w-sm) solid var(--ink);
+  border-left: none;
   box-shadow: none;
   flex-shrink: 0;
 }
@@ -66,20 +86,21 @@
 }
 
 .hero__stat-num {
-  font-family: var(--font-mono);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 800;
   font-size: 1.6rem;
   line-height: 1;
+  color: #fff;
 }
 
 .hero__stat-label {
   font-size: 0.78rem;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.75);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
-/* Decorative stacked ticket visual */
+/* Decorative glass account cards */
 .hero__visual {
   position: relative;
   height: 320px;
@@ -90,27 +111,28 @@
 
 .hero__ticket {
   position: absolute;
-  width: 240px;
-  background: var(--card);
-  border: var(--border-w) solid var(--ink);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  width: 230px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 22px;
+  box-shadow: 0 24px 48px -12px rgba(9, 30, 66, 0.4);
   padding: 18px;
 }
 
 .hero__ticket--back {
-  transform: rotate(-9deg) translate(-58px, 14px);
-  background: var(--accent-soft);
+  transform: rotate(-6deg) translate(-58px, 14px);
+  background: rgba(255, 255, 255, 0.85);
   z-index: 1;
 }
 
 .hero__ticket--front {
-  transform: rotate(6deg) translate(52px, -10px);
+  transform: rotate(4deg) translate(52px, -10px);
   z-index: 2;
 }
 
 .hero__ticket-code {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
+  font-weight: 600;
   font-size: 0.72rem;
   color: var(--ink-soft);
   margin-bottom: 10px;
@@ -118,10 +140,9 @@
 
 .hero__ticket-bar {
   height: 10px;
-  background: var(--ink);
-  border-radius: 2px;
+  background: var(--accent-soft);
+  border-radius: 8px;
   margin-bottom: 8px;
-  opacity: 0.9;
 }
 
 .hero__ticket-bar--short { width: 60%; }
@@ -147,7 +168,7 @@
   gap: 6px;
   padding: 18px;
   background: var(--card);
-  border: var(--border-w-sm) solid var(--ink);
+  border: var(--border-w-sm) solid var(--border);
   border-radius: var(--radius);
   text-decoration: none;
   color: var(--ink);
@@ -156,8 +177,8 @@
 }
 
 .category-chip:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(37, 99, 235, 0.16);
 }
 
 .category-chip__name { font-family: var(--font-display); font-weight: 700; font-size: 1rem; }
@@ -178,7 +199,7 @@
   font-weight: 700;
   font-size: 0.85rem;
   padding: 9px 16px;
-  border: var(--border-w-sm) solid var(--ink);
+  border: var(--border-w-sm) solid var(--border);
   border-radius: 999px;
   background: var(--card);
   color: var(--ink);
@@ -188,7 +209,7 @@
   white-space: nowrap;
 }
 
-.platform-chip:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+.platform-chip:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(37, 99, 235, 0.16); }
 
 .platform-chip.is-active {
   background: var(--accent);
@@ -212,8 +233,8 @@
 
 .account-card {
   background: var(--card);
-  border: var(--border-w-sm) solid var(--ink);
-  border-radius: 8px;
+  border: var(--border-w-sm) solid var(--border);
+  border-radius: 22px;
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   display: flex;
@@ -224,8 +245,8 @@
 }
 
 .account-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 0 var(--ink);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.18);
 }
 
 /* Area foto + info: satu-satunya bagian yang berupa <a> menuju detail,
@@ -260,7 +281,7 @@
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--ink-soft);
-  background: repeating-linear-gradient(135deg, var(--bg-raised), var(--bg-raised) 10px, #e2ded4 10px, #e2ded4 20px);
+  background: repeating-linear-gradient(135deg, var(--bg-raised), var(--bg-raised) 10px, #E3E9F5 10px, #E3E9F5 20px);
 }
 
 .account-card__badges {
@@ -274,42 +295,26 @@
 .account-card__stamp {
   position: absolute;
   top: 10px;
-  right: -34px;
-  transform: rotate(45deg);
-  background: var(--gold);
+  right: 10px;
+  transform: none;
+  background: var(--gold-soft);
   color: var(--gold-ink);
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 4px 34px;
-  border-top: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
+  letter-spacing: 0.04em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: none;
 }
 
-/* Ticket perforation divider */
+/* Divider antara media & body — garis tipis modern (bukan lagi perforasi tiket) */
 .account-card__perforation {
   height: 0;
-  border-top: 2px dashed #b8b2a2;
-  position: relative;
+  border-top: 1px solid var(--border);
   margin: 0 14px;
 }
-
-.account-card__perforation::before,
-.account-card__perforation::after {
-  content: '';
-  position: absolute;
-  top: -8px;
-  width: 16px;
-  height: 16px;
-  background: var(--bg);
-  border-radius: 50%;
-  border: var(--border-w-sm) solid var(--ink);
-}
-
-.account-card__perforation::before { left: -22px; }
-.account-card__perforation::after { right: -22px; }
 
 .account-card__body {
   padding: 16px 14px 14px;
@@ -367,18 +372,18 @@
 .account-card__promo-stamp {
   position: absolute;
   top: 46px;
-  right: -34px;
-  transform: rotate(45deg);
+  right: 10px;
+  transform: none;
   background: var(--danger);
   color: #fff;
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 0.62rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 4px 34px;
-  border-top: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
+  letter-spacing: 0.04em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: none;
 }
 
 .price-block--discount {
@@ -396,8 +401,8 @@
   font-size: 0.62rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 2px 8px;
-  border-radius: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
   width: fit-content;
   margin-bottom: 2px;
 }
@@ -433,8 +438,8 @@
 
 /* Skeleton card */
 .account-card-skeleton {
-  border: var(--border-w-sm) solid #d3cec1;
-  border-radius: 8px;
+  border: var(--border-w-sm) solid #E3E9F5;
+  border-radius: 22px;
   overflow: hidden;
   background: var(--card);
 }
@@ -468,7 +473,8 @@
   .account-card__actions { padding: 0 10px 10px; gap: 6px; }
   .account-card__actions .btn { padding: 8px 4px; font-size: 0.72rem; gap: 4px; }
 
-  .account-card__stamp { font-size: 0.58rem; padding: 3px 28px; right: -32px; }
+  .account-card__stamp { font-size: 0.58rem; padding: 4px 8px; right: 8px; top: 8px; }
+  .account-card__promo-stamp { font-size: 0.56rem; padding: 4px 8px; right: 8px; top: 40px; }
   .badge { font-size: 0.62rem; padding: 4px 7px; }
 }
 
@@ -486,7 +492,7 @@
 .sold-section {
   margin-top: 48px;
   padding-top: 28px;
-  border-top: 2px dashed #b8b2a2;
+  border-top: 1px solid var(--border);
 }
 
 .sold-section__head {
@@ -525,8 +531,8 @@
 
 .filter-panel {
   background: var(--card);
-  border: var(--border-w-sm) solid var(--ink);
-  border-radius: 8px;
+  border: var(--border-w-sm) solid var(--border);
+  border-radius: 22px;
   box-shadow: var(--shadow-sm);
   padding: 20px;
   position: sticky;
@@ -580,7 +586,7 @@
     height: 100%;
     width: min(320px, 88vw);
     border-radius: 0;
-    border-right: var(--border-w) solid var(--ink);
+    border-right: var(--border-w) solid var(--border);
     border-top: none;
     border-bottom: none;
     border-left: none;
@@ -614,8 +620,8 @@
 
 .product-gallery__main {
   aspect-ratio: 4/3;
-  border: var(--border-w) solid var(--ink);
-  border-radius: 8px;
+  border: var(--border-w) solid var(--border);
+  border-radius: 22px;
   box-shadow: var(--shadow);
   overflow: hidden;
   background: var(--bg-raised);
@@ -633,14 +639,14 @@
 .product-gallery__thumb {
   width: 68px;
   height: 68px;
-  border: var(--border-w-sm) solid var(--ink);
-  border-radius: 4px;
+  border: var(--border-w-sm) solid var(--border);
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   opacity: 0.6;
 }
 
-.product-gallery__thumb.is-active { opacity: 1; box-shadow: 3px 3px 0 var(--ink); }
+.product-gallery__thumb.is-active { opacity: 1; box-shadow: 0 0 0 2px var(--accent); border-color: var(--accent); }
 .product-gallery__thumb img { width: 100%; height: 100%; object-fit: cover; }
 
 .product-info__code {
@@ -663,7 +669,7 @@
 .product-info__actions .btn { flex: 1; }
 
 .product-block {
-  border-top: 2px dashed #b8b2a2;
+  border-top: 1px solid var(--border);
   padding-top: 18px;
   margin-top: 18px;
 }
@@ -679,7 +685,7 @@
     background: var(--bg);
     padding: 12px clamp(16px, 4vw, 20px);
     margin: 0 calc(-1 * clamp(16px, 4vw, 20px)) -20px;
-    border-top: var(--border-w-sm) solid var(--ink);
+    border-top: var(--border-w-sm) solid var(--border);
   }
 }
 
@@ -732,7 +738,7 @@
 }
 
 .payment-qris {
-  border: var(--border-w-sm) dashed var(--border);
+  border: 1px dashed var(--border);
   border-radius: var(--radius);
   padding: 14px;
   margin: 10px 0 16px;
@@ -750,7 +756,7 @@
 }
 
 .payment-warning {
-  background: #e9e5da;
+  background: #EEF3FC;
   border: var(--border-w-sm) solid var(--border);
   border-radius: var(--radius);
   padding: 12px 14px;
@@ -773,8 +779,8 @@
 }
 
 .dropzone {
-  border: var(--border-w-sm) dashed var(--ink);
-  border-radius: 8px;
+  border: 1px dashed var(--border);
+  border-radius: 22px;
   padding: 30px 20px;
   text-align: center;
   background: var(--bg-raised);
@@ -795,8 +801,8 @@
 .photo-preview-item {
   position: relative;
   aspect-ratio: 1;
-  border: var(--border-w-sm) solid var(--ink);
-  border-radius: 6px;
+  border: var(--border-w-sm) solid var(--border);
+  border-radius: 16px;
   overflow: hidden;
 }
 
@@ -811,7 +817,7 @@
   border-radius: 50%;
   background: var(--danger);
   color: #fff;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border);
   cursor: pointer;
   font-size: 0.75rem;
   line-height: 1;
@@ -832,8 +838,8 @@
 
 .step-card {
   background: var(--card);
-  border: var(--border-w-sm) solid var(--ink);
-  border-radius: 8px;
+  border: var(--border-w-sm) solid var(--border);
+  border-radius: 22px;
   box-shadow: var(--shadow-sm);
   padding: 22px;
 }
@@ -844,10 +850,10 @@
   font-size: 0.85rem;
   color: var(--accent-ink);
   background: var(--accent-soft);
-  border: 2px solid var(--ink);
+  border: none;
   display: inline-block;
   padding: 3px 9px;
-  border-radius: 3px;
+  border-radius: 999px;
   margin-bottom: 12px;
 }
 
@@ -856,8 +862,8 @@
 }
 
 .faq-item {
-  border: var(--border-w-sm) solid var(--ink);
-  border-radius: 8px;
+  border: var(--border-w-sm) solid var(--border);
+  border-radius: 22px;
   background: var(--card);
   margin-bottom: 12px;
   overflow: hidden;
@@ -885,14 +891,14 @@
 }
 
 .faq-item.is-open .faq-item__a { display: block; }
-.faq-item__icon { transition: transform 0.15s ease; flex-shrink: 0; }
-.faq-item.is-open .faq-item__icon { transform: rotate(45deg); }
+.faq-item__icon { transition: transform 0.15s ease; flex-shrink: 0; color: var(--accent); }
+.faq-item.is-open .faq-item__icon { transform: rotate(180deg); }
 
 /* CTA band */
 .cta-band {
-  background: var(--ink);
+  background: var(--gradient-hero);
   color: #fff;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   padding: clamp(24px, 6vw, 44px);
   display: flex;
   justify-content: space-between;
@@ -902,7 +908,7 @@
 }
 
 .cta-band h2 { color: #fff; margin-bottom: 4px; }
-.cta-band p { color: #b6b2a8; margin: 0; }
+.cta-band p { color: #94A3B8; margin: 0; }
 
 @media (max-width: 700px) {
   .cta-band { flex-direction: column; text-align: center; }
@@ -911,7 +917,7 @@
 /* ── URL tracking block (wajib disimpan pembeli) ── */
 .payment-block--url-tracking {
   background: var(--accent-soft, #e6e2d9);
-  border: var(--border-w) solid var(--ink);
+  border: var(--border-w) solid var(--border);
 }
 
 .payment-url-box {
