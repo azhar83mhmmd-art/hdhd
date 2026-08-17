@@ -1182,9 +1182,11 @@
         ['PROCESSING', 'WAITING_DELIVERY', 'DELIVERED'].includes(tx.transaction_status) ? tx.transaction_status : 'PROCESSING';
       document.querySelector('[data-tx-delivery-select]').disabled = isCompleted;
     }
+    // Tombol "Selesaikan Pesanan" terpisah tidak dipakai lagi — approve
+    // sekarang langsung menyelesaikan pesanan dalam satu klik.
     const completeWrap = document.querySelector('[data-tx-complete-wrap]');
     const completedBadge = document.querySelector('[data-tx-completed-badge]');
-    if (completeWrap) completeWrap.style.display = isCompleted ? 'none' : '';
+    if (completeWrap) completeWrap.style.display = 'none';
     if (completedBadge) completedBadge.style.display = isCompleted ? '' : 'none';
 
     const deleteTxBtn = document.querySelector('[data-tx-delete-btn]');
@@ -1245,22 +1247,16 @@
     const btn = document.querySelector('[data-tx-approve-confirm-btn]');
     btn.disabled = true;
     try {
-      const { error } = await supabaseClient
-        .from('transactions')
-        .update({ payment_status: 'PAID' })
-        .eq('id', currentTxDetail.id);
-      if (error) {
-        if ((error.message || '').includes('sudah diverifikasi')) throw new Error('Transaksi ini sudah diverifikasi.');
-        throw error;
-      }
-      KENARRZ.toast('Pembayaran diverifikasi. Akun ditandai SOLD.', 'success');
+      const { error } = await supabaseClient.rpc('approve_and_complete_transaction', { p_transaction_id: currentTxDetail.id });
+      if (error) throw error;
+      KENARRZ.toast('Pembayaran diverifikasi & pesanan selesai. Data akun langsung tampil untuk pembeli.', 'success');
       approveModal.classList.remove('is-open');
       closeTxDrawer();
       loadTransactionsTable();
       loadAccountsTable();
       loadDashboard();
     } catch (e) {
-      KENARRZ.toast(e.message, 'error');
+      KENARRZ.toast(`Gagal verifikasi: ${e.message || 'error tidak diketahui'}`, 'error');
     } finally {
       btn.disabled = false;
     }
