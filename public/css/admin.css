@@ -15,12 +15,13 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  background: var(--gradient-hero);
 }
 
 .admin-login__card {
   background: var(--card);
-  border: var(--border-w) solid var(--ink);
-  border-radius: 8px;
+  border: var(--border-w) solid var(--border);
+  border-radius: 22px;
   box-shadow: var(--shadow);
   padding: clamp(24px, 6vw, 36px);
   width: 100%;
@@ -50,15 +51,15 @@
   height: 30px;
   object-fit: contain;
   flex-shrink: 0;
-  background: #e9e6df;
-  border-radius: 6px;
+  background: #EEF3FC;
+  border-radius: 16px;
   padding: 2px;
 }
 
 .admin-login__error {
   background: var(--danger-soft);
   color: var(--danger);
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border);
   border-radius: var(--radius);
   padding: 10px 12px;
   font-size: 0.85rem;
@@ -78,7 +79,7 @@
 
 .admin-sidebar {
   background: var(--ink);
-  color: #e9e6df;
+  color: #EEF3FC;
   padding: 22px 14px;
   display: flex;
   flex-direction: column;
@@ -103,7 +104,7 @@
   gap: 10px;
   padding: 11px 12px;
   border-radius: var(--radius);
-  color: #b6b2a8;
+  color: #94A3B8;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
@@ -114,8 +115,10 @@
   text-align: left;
 }
 
+.admin-nav-link .icon { flex-shrink: 0; }
+
 .admin-nav-link:hover { background: rgba(255,255,255,0.08); color: #fff; }
-.admin-nav-link.is-active { background: var(--accent); color: #fff; }
+.admin-nav-link.is-active { background: var(--accent); color: #fff; box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35); }
 
 .admin-sidebar__spacer { flex: 1; }
 
@@ -151,8 +154,8 @@
 
 .stat-card {
   background: var(--card);
-  border: var(--border-w-sm) solid var(--ink);
-  border-radius: 8px;
+  border: var(--border-w-sm) solid var(--border);
+  border-radius: 22px;
   box-shadow: var(--shadow-sm);
   padding: 18px;
 }
@@ -175,8 +178,8 @@
 /* ── Panels / cards ── */
 .admin-panel {
   background: var(--card);
-  border: var(--border-w-sm) solid var(--ink);
-  border-radius: 8px;
+  border: var(--border-w-sm) solid var(--border);
+  border-radius: 22px;
   box-shadow: var(--shadow-sm);
   padding: 22px;
   margin-bottom: 24px;
@@ -209,13 +212,13 @@
   letter-spacing: 0.05em;
   color: var(--ink-soft);
   padding: 10px 12px;
-  border-bottom: var(--border-w-sm) solid var(--ink);
+  border-bottom: var(--border-w-sm) solid var(--border);
   white-space: nowrap;
 }
 
 .admin-table td {
   padding: 12px;
-  border-bottom: 1px solid #ddd9cf;
+  border-bottom: 1px solid #EEF3FC;
   vertical-align: middle;
 }
 
@@ -228,8 +231,8 @@
 .table-thumb {
   width: 42px;
   height: 42px;
-  border-radius: 6px;
-  border: 2px solid var(--ink);
+  border-radius: 16px;
+  border: 2px solid var(--border);
   object-fit: cover;
   background: var(--bg-raised);
 }
@@ -240,8 +243,8 @@
   align-items: center;
   gap: 14px;
   padding: 14px;
-  border: 2px solid var(--ink);
-  border-radius: 8px;
+  border: 2px solid var(--border);
+  border-radius: 22px;
   background: var(--bg-raised);
 }
 
@@ -254,16 +257,17 @@
 }
 
 .tab-btn {
-  border: 2px solid var(--ink);
+  border: 1px solid var(--border);
   background: var(--card);
   border-radius: 999px;
-  padding: 7px 16px;
+  padding: 8px 16px;
+  min-height: 40px;
   font-weight: 600;
   font-size: 0.82rem;
   cursor: pointer;
 }
 
-.tab-btn.is-active { background: var(--ink); color: #fff; }
+.tab-btn.is-active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
 /* ── Drawer form (add/edit account) ── */
 .admin-drawer-overlay {
@@ -283,7 +287,8 @@
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  border-left: var(--border-w) solid var(--ink);
+  border-left: 1px solid var(--border);
+  box-shadow: -20px 0 45px rgba(23, 32, 51, 0.14);
   padding: clamp(16px, 5vw, 26px);
 }
 
@@ -304,8 +309,8 @@
 .image-manage-item {
   position: relative;
   aspect-ratio: 1;
-  border: 2px solid var(--ink);
-  border-radius: 6px;
+  border: 2px solid var(--border);
+  border-radius: 16px;
   overflow: hidden;
 }
 
@@ -318,7 +323,7 @@
   border-radius: 50%;
   background: var(--danger);
   color: #fff;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--border);
   cursor: pointer;
   font-size: 0.7rem;
   line-height: 1;
@@ -328,8 +333,8 @@
   position: absolute;
   bottom: 3px; left: 3px;
   background: rgba(255,255,255,0.9);
-  border: 2px solid var(--ink);
-  border-radius: 4px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
   font-size: 0.65rem;
   padding: 1px 5px;
   cursor: pointer;
@@ -409,7 +414,7 @@
 
 /* ── Fieldset (diskon, kredensial akun) ── */
 .admin-fieldset {
-  border: var(--border-w-sm) solid var(--ink);
+  border: var(--border-w-sm) solid var(--border);
   border-radius: var(--radius);
   padding: 14px 16px;
   margin: 14px 0;
